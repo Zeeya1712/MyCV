@@ -58,7 +58,7 @@ html, body {
     }
     
     #content-img {
-      background-image: url(me.jpg);
+      background-image: url(profile.jpg);
       background-position: center;
       background-size: cover;
       min-height: 400px;
