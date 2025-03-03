@@ -6,7 +6,7 @@ body {
     color: #333;
 }
 header {
-background-image: url('gunung.jpg'); 
+background-image: url('me\ to.jpg'); 
 background-size: cover;
 background-position: center;
 color: white;
@@ -77,7 +77,7 @@ aside {
     flex: 1;
     padding: 20px;
     margin: 10px;
-    background: radial-gradient(circle at 30% 107%, hsl(0, 0%, 100%) 20%, #7b88b0 45%, #8597d3 90%);
+    background: radial-gradient(circle at 30% 107%, hsl(0, 0%, 100%) 20%, hsl(223, 6%, 23%) 45%, #8597d3 90%);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
