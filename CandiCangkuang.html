@@ -48,7 +48,7 @@
         <img src="profile.jpg" alt="Foto Penulis">
         <p>Nama: Salman Ilyas Alfarizi</p>
         <p>Hobi: Menulis, Menggambar, dan traveling.</p>
-        <p>Kontak: altaviavi@gmail.com</p>
+        <p>Kontak: iliassalman59@gmail.com</p>
         <h2>Candi Cangkuang</h2>
         <img src="Candi Cangkuang.jpg" alt="Wisata Candi Cangkuang">
     </aside>
@@ -56,6 +56,60 @@
 <footer>
     <p>&copy; 2024 Wisata Alam di Garut. Semua hak dilindungi.</p>
 </footer>
+<script>
+    // Check for saved theme preference on load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
 
+    // Animasi saat scroll
+    window.addEventListener('scroll', function() {
+        const article = document.querySelector('article');
+        const aside = document.querySelector('aside');
+        const images = document.querySelectorAll('img');
+        
+        const scrollPosition = window.scrollY;
+        
+        // Menambahkan kelas 'fade-in' saat artikel dan aside terlihat
+        if (scrollPosition > 100) {
+            article.classList.add('fade-in');
+            aside.classList.add('fade-in');
+            images.forEach(image => {
+                image.classList.add('fade-in');
+            });
+        } else {
+            article.classList.remove('fade-in');
+            aside.classList.remove('fade-in');
+            images.forEach(image => {
+                image.classList.remove('fade-in');
+            });
+        }
+    });
+
+    <!-- Dark Mode Toggle Button -->
+    const darkModeToggle = document.createElement('img');
+    darkModeToggle.src = 'bullan.png'; // Ensure you have this image in the correct path
+    darkModeToggle.alt = 'Toggle Dark Mode';
+    darkModeToggle.style.position = 'fixed';
+    darkModeToggle.style.top = '20px';
+    darkModeToggle.style.right = '20px';
+    darkModeToggle.style.cursor = 'pointer';
+    darkModeToggle.style.width = '50px'; // Adjust size as needed
+    darkModeToggle.style.height = '50px'; // Adjust size as needed
+
+    document.body.appendChild(darkModeToggle);
+
+    darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+
+        // Save dark mode preference
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+</script>
 </body>
 </html>

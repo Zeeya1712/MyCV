@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisata Alam di Garut</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Wisata Alam di Garut</h1>
+        <p>Temukan keindahan alam Indonesia yang menakjubkan!</p>
+        
+        <!-- Menambahkan navbar yang memuat dropdown menu -->
+        <div class="navbar">
+            <div class="dropdown">
+                <button>Back To</button>
+                <div class="dropdown-content">
+                    <a href="index.html">About</a>
+                    <a href="portofolio.html">Portofolio</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="NewProject.html">Certificate</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button>Menu</button>
+                <div class="dropdown-content">
+                    <a href="BatuLempar.html">Batu Lempar</a>
+                    <a href="Dayeuhmanggung.html">Dayeuh Manggung</a>
+                    <a href="CandiCangkuang.html">Candi Cangkuang</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+
+<main>
+    <article>
+        <h2>Dayeuhmanggung</h2>
+        <p>Dayeuhmanggung adalah desa di kecamatan Cilawu, Garut, Jawa Barat, Indonesia.</p>
+        <p>Desa Dayeuhmanggung memiliki potensi keindahan alam yang luar biasa, dan kini menjadi pintu masuk bagi para pendaki Gunung Cikuray.</p>
+        <p>Selain wisata alam, desa ini juga dikenal dengan produk unggulan kue dan roti yang khas.</p>
+        <p>Desa ini dipimpin oleh Kepala Desa Darmawan, yang telah membuat banyak terobosan untuk meningkatkan kesejahteraan warganya.</p>
+        <h2>Bisa dijadikan tempat berkemah</h2>
+        <img src="kemah.jpg" alt="Kemah di tempat wisata">
+    </article>
+
+    <aside>
+        <h2>Profil Penulis</h2>
+        <img src="me to.jpg" alt="Foto Penulis">
+        <p>Nama: Salman Ilyas Alfarizi</p>
+        <p>Hobi: Menulis, Menggambar, dan Traveling.</p>
+        <p>Kontak: altaviavi@gmail.com</p>
+        <h2>Dayeuhmanggung</h2>
+        <img src="Dayeuhmanggung.jpg" alt="Wisata Dayeuhmanggung">
+    </aside>
+</main>
+
+<footer>
+    <p>&copy; 2024 Wisata Alam di Garut. Semua hak dilindungi.</p>
+</footer>
+
+<script>
+    // 1. Smooth Scroll pada link menu
+    document.querySelectorAll('.navbar a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href').substring(1);  // Mengambil id dari href
+            const targetElement = document.getElementById(targetId);
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 50, // Offset untuk memberi ruang di atas
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // 2. Scroll Animations
+    window.addEventListener('scroll', function() {
+        const article = document.querySelector('article');
+        const aside = document.querySelector('aside');
+        const images = document.querySelectorAll('img');
+        
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition > 100) {
+            article.classList.add('fade-in-visible');
+            aside.classList.add('fade-in-visible');
+            images.forEach(image => {
+                image.classList.add('fade-in-visible');
+            });
+        } else {
+            article.classList.remove('fade-in-visible');
+            aside.classList.remove('fade-in-visible');
+            images.forEach(image => {
+                image.classList.remove('fade-in-visible');
+            });
+        }
+    });
+
+    // 3. Toggle Dark Mode
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.innerText = 'Toggle Dark Mode';
+    darkModeToggle.style.position = 'fixed';
+    darkModeToggle.style.top = '20px';
+    darkModeToggle.style.right = '20px';
+    darkModeToggle.style.padding = '10px 20px';
+    darkModeToggle.style.backgroundColor = '#333';
+    darkModeToggle.style.color = 'white';
+    darkModeToggle.style.border = 'none';
+    darkModeToggle.style.cursor = 'pointer';
+    darkModeToggle.style.borderRadius = '5px';
+
+    document.body.appendChild(darkModeToggle);
+
+    darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        // Simpan preferensi dark mode pada localStorage
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Memeriksa apakah dark mode aktif berdasarkan localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+</script>
+
+
+</body>
+</html>

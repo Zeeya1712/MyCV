@@ -2,17 +2,56 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle at 30% 107%,     hsl(0, 0%, 0%) 20%, #3c4560 45%, #1f2435 90%);
+    background: radial-gradient(circle at 30% 107%, hwb(210 20% 79%) 20%, #0059ff 45%, #1f2435 90%);
     color: #333;
 }
-header {
-background-image: url('me\ to.jpg'); 
-background-size: cover;
-background-position: center;
-color: white;
-padding: 1.5em;
-text-align: center;
+body.dark-mode {
+    background: #121212;
+    color: white;
 }
+
+body.dark-mode header {
+    background-image: url('danau.jpg'); /* Gambar background berbeda untuk dark mode */
+}
+
+body.dark-mode .navbar button {
+    background-color: #444;
+}
+
+body.dark-mode .dropdown button {
+    background-color: #444;
+}
+
+body.dark-mode footer {
+    background-color: #222;
+}
+
+body.dark-mode main {
+    background-color: #1d1d1d;
+}
+
+body.dark-mode article, body.dark-mode aside {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode a {
+    color: #bbb;
+}
+
+body.dark-mode a:hover {
+    color: #fff;
+}
+header {
+    position: relative; /* Agar dropdown bisa muncul di atas header */
+    background-image: url('pulau-padar.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 1.5em;
+    text-align: center;
+}
+
 .dropdown {
     position: absolute;
     top: 10px;
@@ -20,21 +59,27 @@ text-align: center;
 }
 
 .dropdown button {
-    background-color: hwb(0 33% 67%);
+    background-color: #007bff; /* Biru */
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 10000;
 }
 
+
+/* Dropdown Menu */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
+    min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
+
+
 
 .dropdown-content a {
     display: block;
@@ -47,9 +92,10 @@ text-align: center;
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content{
-    display: block;
+.dropdown:hover .dropdown-content {
+    display: block; /* Menampilkan dropdown saat hover pada tombol */
 }
+
 footer {
     background-color: #333;
     color: white;
@@ -77,7 +123,7 @@ aside {
     flex: 1;
     padding: 20px;
     margin: 10px;
-    background: radial-gradient(circle at 30% 107%, hsl(0, 0%, 56%) 20%, hsl(0, 0%, 0%) 45%, #111111 90%);
+    background: radial-gradient(circle at 30% 107%, hsl(0, 0%, 47%) 20%, #ffffff 45%, hsl(0, 0%, 0%) 90%);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -85,28 +131,51 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    transition: transform 0.5s ease-out;
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
+/* Menambahkan z-index agar dropdown selalu berada di atas elemen lain */
+/* Mengubah background dropdown menjadi biru */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #007bff; /* Biru */
     min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    padding: 10px 0;
 }
+
+/* Mengubah warna teks tautan menjadi putih agar kontras dengan background biru */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
     display: block;
+    padding: 10px 16px;
+    color: white; /* Warna teks menjadi putih */
+    text-decoration: none;
 }
+
+/* Mengubah warna saat hover untuk tautan dropdown */
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #0056b3; /* Biru lebih gelap saat hover */
+    color: white; /* Pastikan teks tetap putih */
 }
+
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 16px; /* Berikan padding yang cukup */
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -119,4 +188,97 @@ img {
     article, aside {
         flex: 100%;
     }
+}
+/* Animasi Fade In */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+img.fade-in {
+    transform: scale(0.95);
+    opacity: 0.25;
+    transition: all 2s ease-in-out;
+}
+
+img.fade-in-visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    article, aside {
+        flex: 100%;
+    }
+}
+
+/* Animasi pada gambar ketika muncul */
+img.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Efek Hover pada Gambar */
+img:hover {
+    transform: scale(1.05); /* Membuat gambar sedikit membesar */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Memberikan bayangan di sekitar gambar */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Membuat transisi lebih halus */
+}
+
+
+/* Efek Hover pada Tombol Dropdown */
+.dropdown button:hover {
+    background-color: hsl(0, 0%, 0%); /* Biru lebih gelap saat hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Bayangan lebih tegas */
+    transform: scale(1.05); /* Membuat tombol sedikit membesar */
+    transition: all 0.3s ease; /* Transisi halus untuk semua efek */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Efek Hover pada Tautan Dropdown */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Warna latar belakang berubah saat di-hover */
+    color: #008cba; /* Ubah warna teks menjadi biru saat di-hover */
+    transform: translateX(10px); /* Memberikan efek geser ke kanan */
+    transition: background-color 0.3s, transform 0.3s; /* Transisi halus */
+}
+
+
+/* Efek Hover pada Artikel */
+article:hover {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+    transform: translateY(-5px); /* Artikel sedikit naik */
+    background-color: #f7f7f7; /* Ubah warna latar belakang saat di-hover */
+    transition: all 0.3s ease; /* Transisi halus untuk semua efek */
+}
+
+/* Efek Hover pada Aside */
+aside:hover {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+    transform: translateY(-5px); /* Aside sedikit naik */
+    background-color: #e3f7ff; /* Ubah warna latar belakang */
+    transition: all 0.3s ease; /* Transisi halus */
+}
+
+
+footer:hover {
+    background-color: #444; /* Ubah warna latar belakang footer */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+    transition: all 0.3s ease; /* Transisi halus untuk semua efek */
 }

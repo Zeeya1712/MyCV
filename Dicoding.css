@@ -4,20 +4,74 @@ body {
     padding: 0;
     background: radial-gradient(circle at 30% 107%, hsl(205, 100%, 50%) 20%, #0059ff 45%, #1f2435 90%);
     color: #333;
+    transition: background 0.5s ease, color 0.5s ease; /* Transisi untuk perubahan warna */
 }
- header {
-background-image: url('suungai.jpeg'); 
-background-size: cover;
-background-position: center;
-color: white;
-padding: 1.5em;
-text-align: center;
+body.dark-mode {
+    background: linear-gradient(to bottom, #121212, #1d1d1d); /* Gradasi saat dark mode */
+    color: white;
+    transition: background 0.5s ease, color 0.5s ease; /* Transisi untuk perubahan warna */
 }
+
+body.dark-mode header {
+    background-image: url('gunung.jpg'); /* Gambar background berbeda untuk dark mode */
+}
+
+body.dark-mode .navbar button {
+    background-color: #444;
+}
+
+body.dark-mode .dropdown button {
+    background-color: #444;
+}
+
+body.dark-mode footer {
+    background-color: #222;
+}
+
+body.dark-mode main {
+    background-color: #1d1d1d;
+}
+
+body.dark-mode article, body.dark-mode aside {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode a {
+    color: #bbb;
+}
+
+body.dark-mode a:hover {
+    color: #fff;
+}
+
+body.fade {
+    background: linear-gradient(to bottom, #121212, #1d1d1d); /* Gradasi saat berpindah ke dark mode */
+    transition: background 0.5s ease; /* Transisi halus */
+}
+
+/* Additional styles for dark mode toggle if needed */
+body.dark-mode img:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    transition: transform 0.3s; /* Smooth transition effect */
+}
+
+header {
+    position: relative; /* Ensure dropdown appears over header */
+    background-image: url('suungai.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 1.5em;
+    text-align: center;
+}
+
 .dropdown {
-    position: absolute;
-    top: 10px;
-    right: 20px;
+    position: relative; /* This is important for absolute positioning of the dropdown menu */
+    display: inline-block;
+    z-index: 9999;  /* Ensure dropdown content appears above other elements */
 }
+
 
 .dropdown button {
     background-color: #008cba;
@@ -26,30 +80,42 @@ text-align: center;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 10000;  /* Ensure button is above other content */
 }
 
+
+/* Dropdown Menu */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #007bff; /* Blue background */
+    min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 9999; /* Ensure it's above the header and other content */
+    padding: 10px 0;
 }
 
+
+/* Dropdown Menu Items */
 .dropdown-content a {
     display: block;
-    padding: 10px;
-    color: black;
+    padding: 10px 16px;
+    color: white; /* White text */
     text-decoration: none;
 }
 
+
+/* Hover effect for dropdown items */
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #0056b3; /* Darker blue on hover */
+    color: white;
 }
 
+/* Show dropdown when hovering over button */
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: block; /* Display dropdown when hovering */
 }
+
 footer {
     background-color: #333;
     color: white;
@@ -59,12 +125,14 @@ footer {
     bottom: 0;
     width: 100%;
 }
+/* Main content styles */
 main {
     display: flex;
     flex-direction: row;
     padding: 20px;
     flex-wrap: wrap;
 }
+
 article {
     flex: 3;
     padding: 20px;
@@ -81,32 +149,56 @@ aside {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    transition: transform 0.5s ease-out;
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
+/* Menambahkan z-index agar dropdown selalu berada di atas elemen lain */
+/* Mengubah background dropdown menjadi biru */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #007bff; /* Biru */
     min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    padding: 10px 0;
 }
+
+/* Mengubah warna teks tautan menjadi putih agar kontras dengan background biru */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
     display: block;
+    padding: 10px 16px;
+    color: white; /* Warna teks menjadi putih */
+    text-decoration: none;
 }
+
+/* Mengubah warna saat hover untuk tautan dropdown */
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #0056b3; /* Biru lebih gelap saat hover */
+    color: white; /* Pastikan teks tetap putih */
 }
+
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 16px; /* Berikan padding yang cukup */
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -119,4 +211,99 @@ img {
     article, aside {
         flex: 100%;
     }
+}
+/* Animasi Fade In */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+img.fade-in {
+    transform: scale(0.95);
+    opacity: 0.25;
+    transition: all 2s ease-in-out;
+}
+
+img.fade-in-visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    article, aside {
+        flex: 100%;
+    }
+}
+
+/* Animasi pada gambar ketika muncul */
+img.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Efek Hover pada Gambar */
+img:hover {
+    transform: scale(1.05); /* Membuat gambar sedikit membesar */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Memberikan bayangan di sekitar gambar */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Membuat transisi lebih halus */
+}
+
+
+/* Efek Hover pada Tombol Dropdown */
+.dropdown button:hover {
+    background-color: #006f9b; /* Ubah warna latar belakang saat di-hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Bayangan lebih tegas */
+    transform: scale(1.05); /* Membuat tombol sedikit membesar */
+    transition: all 0.3s ease; /* Transisi halus untuk semua efek */
+}
+
+/* Efek Hover pada Tautan Dropdown */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Warna latar belakang berubah saat di-hover */
+    color: #008cba; /* Ubah warna teks menjadi biru saat di-hover */
+    transform: translateX(10px); /* Memberikan efek geser ke kanan */
+    transition: background-color 0.3s, transform 0.3s; /* Transisi halus */
+}
+
+.some-element {
+    cursor: crosshair; /* Mengubah kursor menjadi silang saat hover */
+}
+
+/* Efek Hover pada Artikel */
+article:hover {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+    transform: translateY(-5px); /* Artikel sedikit naik */
+    background-color: #f7f7f7; /* Ubah warna latar belakang saat di-hover */
+    transition: all 0.3s ease; /* Transisi halus untuk semua efek */
+}
+
+/* Efek Hover pada Aside */
+aside:hover {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lebih besar */
+    transform: translateY(-5px); /* Aside sedikit naik */
+    background-color: #e3f7ff; /* Ubah warna latar belakang */
+    transition: all 0.3s ease; /* Transisi halus */
+}
+
+
+footer:hover {
+    background-color: #444; /* Ubah warna latar belakang footer */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+    transition: all 0.3s ease; /* Transisi halus untuk semua efek */
 }

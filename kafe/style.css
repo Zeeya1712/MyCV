@@ -1,0 +1,241 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: #333;
+    cursor: url('custom-cursor.png'), auto; /* Menggunakan gambar kursor khusus */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+body.dark-mode header {
+    background-image: url('Bukit-dark.jpg'); /* Gambar background berbeda untuk dark mode */
+}
+
+body.dark-mode .navbar button {
+    background-color: #444;
+}
+
+body.dark-mode .dropdown button {
+    background-color: #444;
+}
+
+body.dark-mode footer {
+    background-color: #222;
+}
+
+body.dark-mode main {
+    background-color: #1d1d1d;
+}
+
+body.dark-mode article, body.dark-mode aside {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode a {
+    color: #bbb;
+}
+
+body.dark-mode a:hover {
+    color: #fff;
+}
+
+
+/* Memperbaiki tata letak header dan memusatkan konten */
+header {
+    position: relative;
+    background-image: url('Bukit.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 1.5em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Agar header memenuhi seluruh layar */
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 0.5em 0 1.5em 0;
+}
+
+/* Mengubah gaya untuk dropdown dan memusatkannya di tengah */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Jarak antar tombol menu */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tombol dropdown */
+.dropdown button {
+    background-color: rgb(17, 255, 0);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 90000;
+    font-size: 1.1em;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px 0;
+}
+
+/* Style for links in dropdown */
+.dropdown-content a {
+    display: block;
+    padding: 10px 16px;
+    color: black;
+    text-decoration: none;
+}
+
+/* Hover effect for dropdown links */
+.dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Responsif untuk ukuran layar kecil */
+@media (max-width: 768px) {
+    header {
+        padding: 2em 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dropdown button {
+        font-size: 1.2em;
+    }
+    .dropdown button:hover {
+        cursor: pointer; /* Kursor default pointer */
+    }
+    /* Kursor saat berada di atas link */
+a:hover {
+    cursor: url('custom-link-cursor.png'), pointer; /* Gambar kursor yang berbeda untuk link */
+}
+/* Kursor kustom untuk seluruh elemen artikel */
+article:hover {
+    cursor: url('custom-article-cursor.png'), auto;
+}
+
+/* Kursor kustom saat hover pada aside */
+aside:hover {
+    cursor: url('custom-aside-cursor.png'), auto;
+}
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease, padding-left 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #4caf50;
+    padding-left: 25px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px;
+    justify-content: center;
+}
+
+article, aside {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 45%;
+}
+
+article img, aside img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+article img:hover, aside img:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5em;
+    position: relative;
+}
+
+footer:hover {
+    background-color: #444;
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    article, aside {
+        width: 100%;
+    }
+}
