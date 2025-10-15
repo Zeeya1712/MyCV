@@ -1,72 +1,464 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <meta charset="utf-8">
-  <title>Personal Web</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Portfolio - Salman Ilyas Alfarizi</title>
+ <link rel="stylesheet" type="text/css" href="style.css">
+ <style>
+   /* Enhanced Portfolio Styles */
+   .portfolio-hero {
+     text-align: center;
+     padding: 60px 20px;
+     background: linear-gradient(135deg, rgba(42,46,66,0.9), rgba(60,69,96,0.9));
+     border-radius: 15px;
+     margin-bottom: 40px;
+     position: relative;
+     overflow: hidden;
+   }
+
+   .portfolio-hero::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,107,53,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,107,53,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,107,53,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,107,53,0.05)"/><circle cx="90" cy="30" r="0.5" fill="rgba(255,107,53,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+     opacity: 0.3;
+   }
+
+   .portfolio-hero h2 {
+     font-size: 3em;
+     margin-bottom: 20px;
+     background: linear-gradient(45deg, #fff, #ff6b35);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     position: relative;
+     z-index: 2;
+   }
+
+   .portfolio-hero p {
+     font-size: 1.3em;
+     color: rgba(255, 255, 255, 0.8);
+     position: relative;
+     z-index: 2;
+   }
+
+   .portfolio-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+     gap: 30px;
+     margin: 40px 0;
+   }
+
+   .portfolio-item {
+     position: relative;
+     background: rgba(255, 255, 255, 0.05);
+     backdrop-filter: blur(10px);
+     border-radius: 20px;
+     overflow: hidden;
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     transition: all 0.4s ease;
+     animation: portfolioFadeIn 0.8s ease-out;
+   }
+
+   .portfolio-item:hover {
+     transform: translateY(-10px) scale(1.02);
+     box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+     border-color: rgba(255, 107, 53, 0.3);
+   }
+
+   .portfolio-image {
+     position: relative;
+     width: 100%;
+     height: 250px;
+     overflow: hidden;
+   }
+
+   .portfolio-image img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.4s ease;
+   }
+
+   .portfolio-item:hover .portfolio-image img {
+     transform: scale(1.1) rotate(2deg);
+   }
+
+   .portfolio-overlay {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: linear-gradient(45deg, rgba(255,107,53,0.9), rgba(42,46,66,0.9));
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     opacity: 0;
+     transition: opacity 0.3s ease;
+   }
+
+   .portfolio-item:hover .portfolio-overlay {
+     opacity: 1;
+   }
+
+   .portfolio-content {
+     padding: 25px;
+     position: relative;
+   }
+
+   .project-title {
+     font-size: 1.3em;
+     font-weight: bold;
+     color: #ff6b35;
+     margin-bottom: 15px;
+     text-align: center;
+   }
+
+   .project-description {
+     color: #666;
+     line-height: 1.6;
+     margin-bottom: 20px;
+     text-align: center;
+   }
+
+   .project-link {
+     display: inline-block;
+     padding: 10px 20px;
+     background: linear-gradient(45deg, #ff6b35, #2a2e42);
+     color: white;
+     text-decoration: none;
+     border-radius: 25px;
+     font-weight: bold;
+     transition: all 0.3s ease;
+     position: relative;
+     overflow: hidden;
+   }
+
+   .project-link::before {
+     content: '→';
+     margin-left: 5px;
+     transition: transform 0.3s ease;
+   }
+
+   .project-link:hover::before {
+     transform: translateX(3px);
+   }
+
+   .project-link:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+   }
+
+   .category-badge {
+     position: absolute;
+     top: 15px;
+     right: 15px;
+     background: rgba(255, 107, 53, 0.9);
+     color: white;
+     padding: 5px 12px;
+     border-radius: 15px;
+     font-size: 0.8em;
+     font-weight: bold;
+   }
+
+   .filter-buttons {
+     display: flex;
+     justify-content: center;
+     gap: 15px;
+     margin: 40px 0;
+     flex-wrap: wrap;
+   }
+
+   .filter-btn {
+     padding: 10px 20px;
+     background: rgba(255, 255, 255, 0.1);
+     border: 1px solid rgba(255, 255, 255, 0.2);
+     color: white;
+     border-radius: 25px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     font-weight: bold;
+   }
+
+   .filter-btn:hover,
+   .filter-btn.active {
+     background: linear-gradient(45deg, #ff6b35, #2a2e42);
+     transform: translateY(-2px);
+     box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+   }
+
+   .portfolio-stats {
+     display: flex;
+     justify-content: center;
+     gap: 30px;
+     margin: 40px 0;
+     flex-wrap: wrap;
+   }
+
+   .stat-card {
+     text-align: center;
+     padding: 20px;
+     background: rgba(255, 255, 255, 0.05);
+     border-radius: 15px;
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     transition: all 0.3s ease;
+   }
+
+   .stat-card:hover {
+     transform: translateY(-3px);
+     background: rgba(255, 107, 53, 0.1);
+   }
+
+   .stat-number {
+     font-size: 2em;
+     color: #ff6b35;
+     font-weight: bold;
+     display: block;
+   }
+
+   .stat-label {
+     color: rgba(255, 255, 255, 0.7);
+     font-size: 0.9em;
+   }
+
+   @keyframes portfolioFadeIn {
+     from {
+       opacity: 0;
+       transform: translateY(30px) scale(0.9);
+     }
+     to {
+       opacity: 1;
+       transform: translateY(0) scale(1);
+     }
+   }
+
+   .loading-grid {
+     opacity: 0;
+     animation: fadeInGrid 1s ease-out forwards;
+   }
+
+   @keyframes fadeInGrid {
+     to {
+       opacity: 1;
+     }
+   }
+
+   @media (max-width: 768px) {
+     .portfolio-grid {
+       grid-template-columns: 1fr;
+       gap: 20px;
+     }
+
+     .portfolio-hero h2 {
+       font-size: 2em;
+     }
+
+     .filter-buttons {
+       gap: 10px;
+     }
+
+     .filter-btn {
+       padding: 8px 15px;
+       font-size: 0.9em;
+     }
+   }
+ </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Curriculum Vitae</h1>
-    <div class="navbar">
-      <ul type="square" class="list-nav">
-        <li><a href="index.html" class="active">About</a></li>
-        <li><a href="portofolio.html">Portofolio</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    <li><a href="NewProject.html">Certificate</a></li>
-      </ul>
-    </div>
-    <div class="content">
-    <!-- Portofolio -->
-      <section class="section">
-        <h2 class="section-header">Portofolio</h2>
-        <div class="gallery">
-          <figure class="images">
-            <img src="CV.png" class="gallery-img" />
-            <figcaption>
-              <h5 class="name">Project 1 Curriculum Vitae (Withouth CSS)
-              <span>
-                  <a href="Tentang.html">Detail</a>
-                </span>
-              </h5>
-            </figcaption>
-          </figure>
-          <figure class="images">
-            <img src="Contact.png" class="gallery-img" />
-            <figcaption>
-              <h5 class="name">Project 2 Contact  
-              <span>
-                  <a href="detail.html">Detail</a>
-                </span>
-              </h5>
-            </figcaption>
-          </figure>
-          <figure class="images">
-            <img src="fufufu-removebg-preview.png" class="gallery-img" />
-            <figcaption>
-              <h5 class="name">Project 3 (Perangkat Lunak)
-                <span>
-                  <a href="indexX - Salin.html">Detail</a>
-                </span>
-              </h5>
-            </figcaption>
-          </figure>
-          <figure class="images">
-            <img src="a2d601f4-ad1f-4773-bfcb-0fc5baac8c46.jpeg" class="gallery-img">
-            <figcaption>
-              <h5 class="name">Project 4 (Dicoding) 
-              <span>
-                <a href="BatuLempar.html">Detail</a>
-              </span>
-              </h5>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-    </div>
-    <footer>
-      <p class="footer-text">Copyright &copy; 2024</p>
-    </footer> 
-  </div>
+ <div class="container">
+   <h1>Curriculum Vitae</h1>
+   <div class="navbar">
+     <ul class="list-nav">
+       <li><a href="index.html">About</a></li>
+       <li><a href="portofolio.html" class="active">Portfolio</a></li>
+       <li><a href="contact.html">Contact</a></li>
+       <li><a href="CV.html">Detail CV</a></li>
+     </ul>
+   </div>
+
+   <div class="portfolio-hero">
+     <h2>My Portfolio</h2>
+     <p>Berikut adalah beberapa project dan karya yang telah saya buat</p>
+   </div>
+
+   <div class="portfolio-stats">
+     <div class="stat-card">
+       <span class="stat-number">4</span>
+       <span class="stat-label">Projects</span>
+     </div>
+     <div class="stat-card">
+       <span class="stat-number">2</span>
+       <span class="stat-label">Technologies</span>
+     </div>
+     <div class="stat-card">
+       <span class="stat-number">100%</span>
+       <span class="stat-label">Dedication</span>
+     </div>
+   </div>
+
+   <div class="content">
+     <section class="section">
+       <h2 class="section-header">My Projects</h2>
+
+       <div class="filter-buttons">
+         <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+         <button class="filter-btn" onclick="filterProjects('web')">Web Development</button>
+         <button class="filter-btn" onclick="filterProjects('design')">Design</button>
+         <button class="filter-btn" onclick="filterProjects('mobile')">Mobile</button>
+       </div>
+
+       <div class="portfolio-grid loading-grid">
+         <div class="portfolio-item" data-category="web">
+           <div class="category-badge">Web Development</div>
+           <div class="portfolio-image">
+             <img src="CV.png" alt="Curriculum Vitae Project" onerror="this.src='https://via.placeholder.com/300x250/2a2e42/ff6b35?text=CV+Project'">
+             <div class="portfolio-overlay">
+               <div style="text-align: center; color: white;">
+                 <h3>Curriculum Vitae</h3>
+                 <p>Personal CV website without CSS styling</p>
+               </div>
+             </div>
+           </div>
+           <div class="portfolio-content">
+             <h3 class="project-title">Project 1 - Curriculum Vitae</h3>
+             <p class="project-description">Website CV personal tanpa menggunakan CSS, menampilkan informasi dasar dengan struktur HTML sederhana.</p>
+             <a href="Tentang.html" class="project-link">View Details</a>
+           </div>
+         </div>
+
+         <div class="portfolio-item" data-category="web">
+           <div class="category-badge">Web Development</div>
+           <div class="portfolio-image">
+             <img src="Contact.png" alt="Contact Project" onerror="this.src='https://via.placeholder.com/300x250/3c4560/ff6b35?text=Contact+Project'">
+             <div class="portfolio-overlay">
+               <div style="text-align: center; color: white;">
+                 <h3>Contact Form</h3>
+                 <p>Interactive contact form design</p>
+               </div>
+             </div>
+           </div>
+           <div class="portfolio-content">
+             <h3 class="project-title">Project 2 - Contact Form</h3>
+             <p class="project-description">Halaman kontak interaktif dengan form yang dapat digunakan untuk menghubungi pemilik website.</p>
+             <a href="detail.html" class="project-link">View Details</a>
+           </div>
+         </div>
+
+         <div class="portfolio-item" data-category="design">
+           <div class="category-badge">Design</div>
+           <div class="portfolio-image">
+             <img src="fufufu-removebg-preview.png" alt="Software Project" onerror="this.src='https://via.placeholder.com/300x250/2a2e42/ff6b35?text=Software+Project'">
+             <div class="portfolio-overlay">
+               <div style="text-align: center; color: white;">
+                 <h3>Software Design</h3>
+                 <p>Creative software interface design</p>
+               </div>
+             </div>
+           </div>
+           <div class="portfolio-content">
+             <h3 class="project-title">Project 3 - Software Design</h3>
+             <p class="project-description">Desain antarmuka perangkat lunak dengan fokus pada user experience dan visual appeal.</p>
+             <a href="indexX - Salin.html" class="project-link">View Details</a>
+           </div>
+         </div>
+
+         <div class="portfolio-item" data-category="mobile">
+           <div class="category-badge">Mobile</div>
+           <div class="portfolio-image">
+             <img src="a2d601f4-ad1f-4773-bfcb-0fc5baac8c46.jpeg" alt="Dicoding Project" onerror="this.src='https://via.placeholder.com/300x250/2a2e42/ff6b35?text=Dicoding+Project'">
+             <div class="portfolio-overlay">
+               <div style="text-align: center; color: white;">
+                 <h3>Mobile App</h3>
+                 <p>Dicoding mobile application project</p>
+               </div>
+             </div>
+           </div>
+           <div class="portfolio-content">
+             <h3 class="project-title">Project 4 - Dicoding Mobile App</h3>
+             <p class="project-description">Aplikasi mobile yang dikembangkan untuk platform Dicoding dengan fitur-fitur modern.</p>
+             <a href="BatuLempar.html" class="project-link">View Details</a>
+           </div>
+         </div>
+       </div>
+     </section>
+   </div>
+
+   <footer>
+     <p class="footer-text">Copyright &copy; 2024 - Salman Ilyas Alfarizi</p>
+   </footer>
+ </div>
+
+ <script>
+   // Portfolio filtering functionality
+   function filterProjects(category) {
+     const items = document.querySelectorAll('.portfolio-item');
+     const buttons = document.querySelectorAll('.filter-btn');
+
+     // Update active button
+     buttons.forEach(btn => btn.classList.remove('active'));
+     event.target.classList.add('active');
+
+     // Filter items
+     items.forEach(item => {
+       if (category === 'all' || item.dataset.category === category) {
+         item.style.display = 'block';
+         setTimeout(() => {
+           item.style.opacity = '1';
+           item.style.transform = 'translateY(0) scale(1)';
+         }, 100);
+       } else {
+         item.style.opacity = '0';
+         item.style.transform = 'translateY(20px) scale(0.9)';
+         setTimeout(() => {
+           item.style.display = 'none';
+         }, 300);
+       }
+     });
+   }
+
+   // Add click effects to portfolio items
+   document.querySelectorAll('.portfolio-item').forEach(item => {
+     item.addEventListener('click', function() {
+       this.style.transform = 'translateY(-5px) scale(0.98)';
+       setTimeout(() => {
+         this.style.transform = 'translateY(-10px) scale(1.02)';
+       }, 150);
+     });
+   });
+
+   // Animate items on scroll
+   const observerOptions = {
+     threshold: 0.1,
+     rootMargin: '0px 0px -50px 0px'
+   };
+
+   const observer = new IntersectionObserver((entries) => {
+     entries.forEach(entry => {
+       if (entry.isIntersecting) {
+         entry.target.style.animationPlayState = 'running';
+       }
+     });
+   }, observerOptions);
+
+   document.querySelectorAll('.portfolio-item').forEach(item => {
+     observer.observe(item);
+   });
+
+   // Add floating animation to stats
+   document.querySelectorAll('.stat-card').forEach((card, index) => {
+     card.style.animationDelay = `${index * 0.2}s`;
+     card.addEventListener('mouseenter', function() {
+       this.style.transform = 'translateY(-3px) scale(1.05)';
+     });
+     card.addEventListener('mouseleave', function() {
+       this.style.transform = 'translateY(0) scale(1)';
+     });
+   });
+ </script>
 </body>
 </html>

@@ -1,93 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>CV - Salman Ilyas</title>
-    <link rel="stylesheet" href="style.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>CV - Salman Ilyas Alfarizi</title>
+   <link rel="stylesheet" href="style.css">
+   <style>
+       /* Enhanced animations for index page */
+       .hero-section {
+           position: relative;
+           overflow: hidden;
+           min-height: 500px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           background: linear-gradient(135deg, rgba(42,46,66,0.9), rgba(60,69,96,0.9)),
+                       url('profile.jpg');
+           background-size: cover;
+           background-position: center;
+           border-radius: 15px;
+           margin-bottom: 30px;
+       }
+
+       .hero-content {
+           text-align: center;
+           color: white;
+           z-index: 2;
+           animation: heroFadeIn 1.2s ease-out;
+       }
+
+       .hero-content h2 {
+           font-size: 3.5em;
+           margin-bottom: 20px;
+           background: linear-gradient(45deg, #fff, #ff6b35);
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           background-clip: text;
+           animation: titleGlow 2s ease-in-out infinite alternate;
+       }
+
+       .hero-content p {
+           font-size: 1.5em;
+           opacity: 0.9;
+           margin-bottom: 30px;
+       }
+
+       .stats-container {
+           display: flex;
+           justify-content: center;
+           gap: 40px;
+           margin-top: 30px;
+           flex-wrap: wrap;
+       }
+
+       .stat-item {
+           text-align: center;
+           padding: 20px;
+           background: rgba(255, 255, 255, 0.1);
+           backdrop-filter: blur(10px);
+           border-radius: 15px;
+           border: 1px solid rgba(255, 255, 255, 0.2);
+           transition: all 0.3s ease;
+           animation: statFadeIn 1.5s ease-out;
+       }
+
+       .stat-item:hover {
+           transform: translateY(-5px) scale(1.05);
+           box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+       }
+
+       .stat-number {
+           font-size: 2.5em;
+           font-weight: bold;
+           color: #ff6b35;
+           display: block;
+           margin-bottom: 5px;
+       }
+
+       .stat-label {
+           font-size: 1em;
+           opacity: 0.8;
+       }
+
+       .skills-visualization {
+           position: relative;
+           margin: 30px 0;
+       }
+
+       .skill-item {
+           margin: 20px 0;
+           padding: 15px;
+           background: rgba(255, 255, 255, 0.05);
+           border-radius: 10px;
+           border-left: 4px solid #ff6b35;
+           transition: all 0.3s ease;
+       }
+
+       .skill-item:hover {
+           background: rgba(255, 107, 53, 0.1);
+           transform: translateX(10px);
+       }
+
+       .skill-info {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           margin-bottom: 10px;
+       }
+
+       .skill-name {
+           font-weight: bold;
+           color: #2a2e42;
+       }
+
+       .skill-percentage {
+           color: #ff6b35;
+           font-weight: bold;
+       }
+
+       .skill-bar {
+           width: 100%;
+           height: 8px;
+           background: rgba(255, 255, 255, 0.2);
+           border-radius: 4px;
+           overflow: hidden;
+           position: relative;
+       }
+
+       .skill-fill {
+           height: 100%;
+           background: linear-gradient(90deg, #ff6b35, #2a2e42);
+           border-radius: 4px;
+           animation: skillBarFill 2s ease-out;
+           position: relative;
+           overflow: hidden;
+       }
+
+       .skill-fill::after {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+           animation: shimmer 2s infinite;
+       }
+
+       .education-timeline {
+           position: relative;
+           max-width: 600px;
+           margin: 0 auto;
+       }
+
+       .timeline-item {
+           position: relative;
+           padding: 20px;
+           margin: 20px 0;
+           background: rgba(255, 255, 255, 0.05);
+           border-radius: 10px;
+           border-right: 4px solid #ff6b35;
+           animation: timelineSlide 1s ease-out;
+       }
+
+       .timeline-item::before {
+           content: '';
+           position: absolute;
+           right: -8px;
+           top: 50%;
+           transform: translateY(-50%);
+           width: 16px;
+           height: 16px;
+           background: #ff6b35;
+           border-radius: 50%;
+           border: 3px solid #2a2e42;
+       }
+
+       .timeline-year {
+           color: #ff6b35;
+           font-weight: bold;
+           font-size: 1.2em;
+       }
+
+       .timeline-title {
+           font-size: 1.1em;
+           margin: 5px 0;
+       }
+
+       @keyframes heroFadeIn {
+           from {
+               opacity: 0;
+               transform: translateY(50px) scale(0.8);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0) scale(1);
+           }
+       }
+
+       @keyframes titleGlow {
+           from {
+               text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+           }
+           to {
+               text-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+           }
+       }
+
+       @keyframes statFadeIn {
+           from {
+               opacity: 0;
+               transform: translateY(30px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+       @keyframes skillBarFill {
+           from {
+               width: 0%;
+           }
+       }
+
+       @keyframes shimmer {
+           0% { transform: translateX(-100%); }
+           100% { transform: translateX(100%); }
+       }
+
+       @keyframes timelineSlide {
+           from {
+               opacity: 0;
+               transform: translateX(50px);
+           }
+           to {
+               opacity: 1;
+               transform: translateX(0);
+           }
+       }
+
+       .floating-particles {
+           position: absolute;
+           width: 100%;
+           height: 100%;
+           top: 0;
+           left: 0;
+           pointer-events: none;
+           overflow: hidden;
+       }
+
+       .particle {
+           position: absolute;
+           width: 4px;
+           height: 4px;
+           background: rgba(255, 107, 53, 0.6);
+           border-radius: 50%;
+           animation: float 6s ease-in-out infinite;
+       }
+
+       .particle:nth-child(2) { animation-delay: -2s; }
+       .particle:nth-child(3) { animation-delay: -4s; }
+
+       @media (max-width: 768px) {
+           .hero-content h2 {
+               font-size: 2.5em;
+           }
+
+           .stats-container {
+               gap: 20px;
+           }
+
+           .stat-item {
+               padding: 15px;
+           }
+       }
+   </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <h1>Curriculum Vitae</h1>
-        
-        <!-- Navbar -->
-        <nav class="navbar">
-            <ul class="list-nav">
-                <li><a href="index.html" class="active">About</a></li>
-                <li><a href="portofolio.html">Portfolio</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="NewProject.html">Certificate</a></li>
-            </ul>
-        </nav>
-        
-        <!-- Content -->
-        <div class="content">
-            <!-- Profile Section -->
-            <div id="content-img">
-                <div class="content1">
-                    <br>
-                    <h2 class="content-header">Salman Ilyas Alfarizi</h2>
-                    <p class="content-text"><b>Someone who really likes Pokemon</b></p>
-                </div>
-            </div>
-            
-            <!-- About Section -->
-            <section class="section section-small">
-                <h2 class="section-header">About</h2>
-                <p>Hi I'm Salman a traveler who loves nature and tranquility, and I have basic coding skills. 
-                    Im 15 year old and i have 2 brother
-                </p>
-            </section>
-            <hr>
-            
-            <!-- Skills Section -->
-            <section class="section">
-                <h2 class="section-header">Skills</h2>
-                <div class="responsive-table">
-                    <table>
-                        <thead>
-                            <tr class="tr-header">
-                                <th>Skill</th>
-                                <th>Proficiency</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-left">Soft Skills</td>
-                                <td>60%</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">HTML Coding</td>
-                                <td>65%</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Budgeting and Cost Analysis</td>
-                                <td>90%</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">CSS Skills</td>
-                                <td>50%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <hr>
-            
-            <!-- Education Section -->
-            <section class="section section-small">
-                <h2 class="section-header">Education</h2>
-                <h5>Experience</h5>
-                <p>Masters in Design | Jan 2020 - April 2024</p>
-                <h5>Vocational School</h5>
-                <p>SMK Wikrama 1 Garut | July 2024</p>
-            </section>
-        </div>
+   <div class="container">
+       <!-- Header -->
+       <h1>Curriculum Vitae</h1>
 
-        <!-- Footer -->
-        <footer>
-            <p class="footer-text">Copyright &copy; 2024</p>
-        </footer>
-    </div>
+       <!-- Navbar -->
+       <nav class="navbar">
+           <ul class="list-nav">
+               <li><a href="index.html" class="active">About</a></li>
+               <li><a href="portofolio.html">Portfolio</a></li>
+               <li><a href="contact.html">Contact</a></li>
+               <li><a href="CV.html">Detail CV</a></li>
+           </ul>
+       </nav>
+
+       <!-- Hero Section -->
+       <div class="hero-section">
+           <div class="floating-particles">
+               <div class="particle" style="left: 20%; top: 30%;"></div>
+               <div class="particle" style="left: 80%; top: 60%;"></div>
+               <div class="particle" style="left: 60%; top: 20%;"></div>
+           </div>
+           <div class="hero-content">
+               <h2>Salman Ilyas Alfarizi</h2>
+               <p><b>Someone who really likes Pokemon</b></p>
+               <div class="stats-container">
+                   <div class="stat-item">
+                       <span class="stat-number">16</span>
+                       <span class="stat-label">Years Old</span>
+                   </div>
+                   <div class="stat-item">
+                       <span class="stat-number">2</span>
+                       <span class="stat-label">Brothers</span>
+                   </div>
+                   <div class="stat-item">
+                       <span class="stat-number">∞</span>
+                       <span class="stat-label">Love for Nature</span>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <!-- Content -->
+       <div class="content">
+           <!-- About Section -->
+           <section class="section section-small">
+               <h2 class="section-header">About</h2>
+               <p style="font-size: 1.2em; line-height: 1.8; text-align: justify;">
+                   Hi! I'm Salman, a traveler who loves nature and tranquility, and I have basic coding skills.
+                   I'm 15 years old and I have 2 brothers. I enjoy exploring new places, learning about different cultures,
+                   and spending time in peaceful natural environments. Currently, I'm a student at SMK Wikrama 1 Garut,
+                   where I'm developing my skills in technology and programming.
+               </p>
+           </section>
+           <hr>
+
+           <!-- Skills Section -->
+           <section class="section">
+               <h2 class="section-header">Skills</h2>
+               <div class="skills-visualization">
+                   <div class="skill-item">
+                       <div class="skill-info">
+                           <span class="skill-name">Budgeting and Cost Analysis</span>
+                           <span class="skill-percentage">90%</span>
+                       </div>
+                       <div class="skill-bar">
+                           <div class="skill-fill" style="width: 90%;"></div>
+                       </div>
+                   </div>
+                   <div class="skill-item">
+                       <div class="skill-info">
+                           <span class="skill-name">HTML Coding</span>
+                           <span class="skill-percentage">65%</span>
+                       </div>
+                       <div class="skill-bar">
+                           <div class="skill-fill" style="width: 65%; animation-delay: 0.5s;"></div>
+                       </div>
+                   </div>
+                   <div class="skill-item">
+                       <div class="skill-info">
+                           <span class="skill-name">Soft Skills</span>
+                           <span class="skill-percentage">60%</span>
+                       </div>
+                       <div class="skill-bar">
+                           <div class="skill-fill" style="width: 60%; animation-delay: 1s;"></div>
+                       </div>
+                   </div>
+                   <div class="skill-item">
+                       <div class="skill-info">
+                           <span class="skill-name">CSS Skills</span>
+                           <span class="skill-percentage">50%</span>
+                       </div>
+                       <div class="skill-bar">
+                           <div class="skill-fill" style="width: 50%; animation-delay: 1.5s;"></div>
+                       </div>
+                   </div>
+               </div>
+           </section>
+           <hr>
+
+           <!-- Education Section -->
+           <section class="section section-small">
+               <h2 class="section-header">Education & Experience</h2>
+               <div class="education-timeline">
+                   <div class="timeline-item">
+                       <div class="timeline-year">2024 - Present</div>
+                       <div class="timeline-title">SMK Wikrama 1 Garut</div>
+                       <p>Currently studying in vocational school, focusing on software development and technology.</p>
+                   </div>
+                   <div class="timeline-item">
+                       <div class="timeline-year">2020 - 2024</div>
+                       <div class="timeline-title">Design Studies</div>
+                       <p>Developed foundational skills in design and creative thinking.</p>
+                   </div>
+                   <div class="timeline-item">
+                       <div class="timeline-year">2009 - Present</div>
+                       <div class="timeline-title">Life Journey</div>
+                       <p>Continuous learning and personal development as a nature lover and technology enthusiast.</p>
+                   </div>
+               </div>
+           </section>
+       </div>
+
+       <!-- Footer -->
+       <footer>
+           <p class="footer-text">Copyright &copy; 2024 - Salman Ilyas Alfarizi</p>
+       </footer>
+   </div>
+
+   <script>
+       document.addEventListener('DOMContentLoaded', function() {
+           // Animate skill bars on scroll
+           const skillBars = document.querySelectorAll('.skill-fill');
+           const observer = new IntersectionObserver((entries) => {
+               entries.forEach(entry => {
+                   if (entry.isIntersecting) {
+                       entry.target.style.animationPlayState = 'running';
+                   }
+               });
+           });
+
+           skillBars.forEach(bar => {
+               observer.observe(bar.parentElement);
+           });
+
+           // Add interactive hover effects to stats
+           document.querySelectorAll('.stat-item').forEach(stat => {
+               stat.addEventListener('mouseenter', function() {
+                   this.style.transform = 'translateY(-5px) scale(1.05) rotate(2deg)';
+               });
+
+               stat.addEventListener('mouseleave', function() {
+                   this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+               });
+           });
+
+           // Add floating animation to particles
+           let particleCount = 0;
+           setInterval(() => {
+               if (particleCount < 10) {
+                   createParticle();
+                   particleCount++;
+               }
+           }, 2000);
+
+           function createParticle() {
+               const particles = document.querySelector('.floating-particles');
+               const particle = document.createElement('div');
+               particle.className = 'particle';
+               particle.style.left = Math.random() * 100 + '%';
+               particle.style.top = Math.random() * 100 + '%';
+               particle.style.animationDelay = Math.random() * 6 + 's';
+               particles.appendChild(particle);
+
+               setTimeout(() => {
+                   particle.remove();
+                   particleCount--;
+               }, 6000);
+           }
+       });
+   </script>
 </body>
 </html>

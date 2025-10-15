@@ -1,83 +1,331 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profileku</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Curriculum Vitae - Salman Ilyas Alfarizi</title>
+   <link rel="stylesheet" href="style.css">
+   <style>
+       .cv-container {
+           max-width: 800px;
+           margin: 0 auto;
+           padding: 20px;
+       }
+
+       .cv-header {
+           text-align: center;
+           margin-bottom: 40px;
+           animation: fadeInDown 1s ease-out;
+       }
+
+       .cv-header h1 {
+           font-size: 3em;
+           background: linear-gradient(45deg, #2a2e42, #ff6b35, #2a2e42);
+           background-size: 200% 200%;
+           animation: gradientShift 3s ease infinite;
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           background-clip: text;
+           margin-bottom: 20px;
+       }
+
+       .profile-image {
+           width: 200px;
+           height: 200px;
+           border-radius: 50%;
+           object-fit: cover;
+           border: 5px solid transparent;
+           background: linear-gradient(45deg, #ff6b35, #2a2e42) border-box;
+           transition: transform 0.3s ease;
+           animation: float 3s ease-in-out infinite;
+       }
+
+       .profile-image:hover {
+           transform: scale(1.05) rotate(5deg);
+       }
+
+       .cv-content {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: 30px;
+           margin-top: 40px;
+       }
+
+       .cv-section {
+           background: rgba(255, 255, 255, 0.1);
+           backdrop-filter: blur(10px);
+           border-radius: 15px;
+           padding: 25px;
+           box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+           border: 1px solid rgba(255, 255, 255, 0.1);
+           animation: slideInUp 0.8s ease-out;
+       }
+
+       .cv-section h3 {
+           color: #ff6b35;
+           margin-bottom: 20px;
+           font-size: 1.5em;
+           text-align: center;
+           position: relative;
+       }
+
+       .cv-section h3::after {
+           content: '';
+           position: absolute;
+           bottom: -10px;
+           left: 50%;
+           transform: translateX(-50%);
+           width: 50px;
+           height: 3px;
+           background: linear-gradient(45deg, #ff6b35, #2a2e42);
+           border-radius: 2px;
+       }
+
+       .info-grid {
+           display: grid;
+           gap: 15px;
+       }
+
+       .info-item {
+           display: flex;
+           justify-content: space-between;
+           padding: 10px;
+           background: rgba(255, 255, 255, 0.05);
+           border-radius: 8px;
+           transition: all 0.3s ease;
+       }
+
+       .info-item:hover {
+           background: rgba(255, 107, 53, 0.1);
+           transform: translateX(5px);
+       }
+
+       .info-label {
+           font-weight: bold;
+           color: #2a2e42;
+       }
+
+       .info-value {
+           color: #666;
+           text-align: right;
+       }
+
+       .skills-container {
+           display: flex;
+           flex-wrap: wrap;
+           gap: 10px;
+           margin-top: 20px;
+       }
+
+       .skill-badge {
+           background: linear-gradient(45deg, #ff6b35, #2a2e42);
+           color: white;
+           padding: 8px 15px;
+           border-radius: 20px;
+           font-size: 0.9em;
+           transition: all 0.3s ease;
+           animation: bounceIn 0.8s ease-out;
+       }
+
+       .skill-badge:hover {
+           transform: translateY(-3px) scale(1.05);
+           box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+       }
+
+       .motivation-quote {
+           font-style: italic;
+           text-align: center;
+           margin: 20px 0;
+           padding: 20px;
+           background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(42,46,66,0.1));
+           border-radius: 10px;
+           border-left: 4px solid #ff6b35;
+       }
+
+       .back-button {
+           display: inline-block;
+           margin: 30px auto;
+           padding: 12px 25px;
+           background: linear-gradient(45deg, #ff6b35, #2a2e42);
+           color: white;
+           text-decoration: none;
+           border-radius: 25px;
+           font-weight: bold;
+           transition: all 0.3s ease;
+           position: relative;
+           overflow: hidden;
+       }
+
+       .back-button:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+       }
+
+       @keyframes fadeInDown {
+           from {
+               opacity: 0;
+               transform: translateY(-30px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+       @keyframes slideInUp {
+           from {
+               opacity: 0;
+               transform: translateY(30px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+       @keyframes float {
+           0%, 100% { transform: translateY(0px); }
+           50% { transform: translateY(-10px); }
+       }
+
+       @keyframes bounceIn {
+           0% {
+               opacity: 0;
+               transform: scale(0.3);
+           }
+           50% {
+               opacity: 1;
+               transform: scale(1.05);
+           }
+           70% {
+               transform: scale(0.9);
+           }
+           100% {
+               opacity: 1;
+               transform: scale(1);
+           }
+       }
+
+       @media (max-width: 768px) {
+           .cv-content {
+               grid-template-columns: 1fr;
+           }
+
+           .cv-header h1 {
+               font-size: 2em;
+           }
+
+           .profile-image {
+               width: 150px;
+               height: 150px;
+           }
+       }
+   </style>
 </head>
 <body>
-    <center>
-        CURRICULUM VITAE
-        <br>
-        <img src="c:\Users\zidan\OneDrive\Gambar\461532346_1486648525156400_2286507301421140241_n.jpg" width="175" height="175">
-        <br>
-        PROFILE 
-    </center>
-    <br>
-    <table border="1">
-        <tr>
-           <td>Nama</td>
-           <td>:</td>
-          <td>Salman Ilyas Alfarizi</td>
-        </tr>
-        <tr>
-            <td>TEMPAT TANGGAL LAHIR</td>
-            <td>:</td>
-            <td>Garut, 16 JANUARI 2009</td>
-        </tr>
-        <td>Status</td>
-        <td>:</td>
-        <td>Single</td>
-        <tr>
-            <td>Jenis Kelamin</td>
-            <td>:</td>
-            <td>Laki-Laki</td>
-        </tr>
-        <tr>
-            <td>Alamat</td>
-            <td>:</td>
-            <td>Jl. Cireundeu, Tanjungsari, Kec. Karangpawitan, Kabupaten Garut, Jawa Barat 44182</td>
-        </tr>
-        <tr>
-            <td>Nomer Hp</td>
-            <td>:</td>
-            <td>083875210811</td>
-        </tr>
-        <tr>
-            <td>Cita-Cita/Harapan</td>
-            <td>:</td>
-            <td>Artis</td>
-        </tr>
-        <tr>
-            <td> <strong>Kata Kata Motivasi</strong></td>
-            <td>:</td>
-            <td>Jadilah diri sendiri dengan kemampuan sendiri tanpa meniru orang lain</td>
-        </tr>
-        <tr>
-            <td> <strong>kemampuan : </strong> </td>
-          </tr>
-          <tr>
-            <td>Mudah meresap materi</td>
-        </tr>
-            <tr>
-                <td>Sedikit Menguasai HTML</td>
-            </tr>
-            <tr>
-                <td>Sedikit Menguasai HTML</td>
-            </tr>
-            <tr>
-               <td>Sedikit Menguasai Python</td>
-            </tr>
-            <tr>
-               <td>Sedikit Menguasai Python</td> 
-            </tr>
-            <tr>
-                <td>Sedikit Menguasai R</td>
-            </tr>
-        </tr>
-    </table>
-    <center>
-        <a href="Tentang.html"> Tentang Web </a>
-    </center>
+   <div class="cv-container loading">
+       <div class="cv-header">
+           <h1>CURRICULUM VITAE</h1>
+           <img src="profile.jpg" alt="Profile Picture" class="profile-image" onerror="this.src='https://via.placeholder.com/200x200/2a2e42/ff6b35?text=Profile'">
+           <p style="color: #666; font-size: 1.2em; margin-top: 10px;">PROFILE</p>
+       </div>
+
+       <div class="cv-content">
+           <div class="cv-section">
+               <h3>Informasi Pribadi</h3>
+               <div class="info-grid">
+                   <div class="info-item">
+                       <span class="info-label">Nama</span>
+                       <span class="info-value">Salman Ilyas Alfarizi</span>
+                   </div>
+                   <div class="info-item">
+                       <span class="info-label">Tempat, Tanggal Lahir</span>
+                       <span class="info-value">Garut, 16 Januari 2009</span>
+                   </div>
+                   <div class="info-item">
+                       <span class="info-label">Status</span>
+                       <span class="info-value">Single</span>
+                   </div>
+                   <div class="info-item">
+                       <span class="info-label">Jenis Kelamin</span>
+                       <span class="info-value">Laki-Laki</span>
+                   </div>
+                   <div class="info-item">
+                       <span class="info-label">Nomor HP</span>
+                       <span class="info-value">0838-7521-0811</span>
+                   </div>
+                   <div class="info-item">
+                       <span class="info-label">Cita-Cita</span>
+                       <span class="info-value">Artis</span>
+                   </div>
+               </div>
+           </div>
+
+           <div class="cv-section">
+               <h3>Alamat</h3>
+               <p style="text-align: center; color: #666; line-height: 1.6;">
+                   Jl. Cireundeu, Tanjungsari<br>
+                   Kec. Karangpawitan<br>
+                   Kabupaten Garut, Jawa Barat 44182
+               </p>
+
+               <div class="motivation-quote">
+                   <strong>Kata-Kata Motivasi:</strong><br>
+                   "Jadilah diri sendiri dengan kemampuan sendiri tanpa meniru orang lain"
+               </div>
+           </div>
+       </div>
+
+       <div class="cv-section" style="grid-column: 1 / -1; margin-top: 30px;">
+           <h3>Kemampuan & Keterampilan</h3>
+           <div class="skills-container">
+               <span class="skill-badge">Mudah Meresapi Materi</span>
+               <span class="skill-badge">HTML</span>
+               <span class="skill-badge">Python</span>
+               <span class="skill-badge">R Programming</span>
+               <span class="skill-badge">Problem Solving</span>
+               <span class="skill-badge">Team Work</span>
+               <span class="skill-badge">Creative Thinking</span>
+               <span class="skill-badge">Time Management</span>
+           </div>
+       </div>
+
+       <div style="text-align: center;">
+           <a href="index.html" class="back-button">← Kembali ke Beranda</a>
+       </div>
+   </div>
+
+   <script>
+       // Add some interactive features
+       document.addEventListener('DOMContentLoaded', function() {
+           // Animate elements on scroll
+           const observerOptions = {
+               threshold: 0.1,
+               rootMargin: '0px 0px -50px 0px'
+           };
+
+           const observer = new IntersectionObserver(function(entries) {
+               entries.forEach(entry => {
+                   if (entry.isIntersecting) {
+                       entry.target.style.animationPlayState = 'running';
+                   }
+               });
+           }, observerOptions);
+
+           document.querySelectorAll('.cv-section').forEach(section => {
+               observer.observe(section);
+           });
+
+           // Add click effect to skill badges
+           document.querySelectorAll('.skill-badge').forEach(badge => {
+               badge.addEventListener('click', function() {
+                   this.style.transform = 'scale(0.95)';
+                   setTimeout(() => {
+                       this.style.transform = '';
+                   }, 150);
+               });
+           });
+       });
+   </script>
 </body>
 </html>

@@ -4,11 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Sosial Icon</title>
-    <link rel="stylesheet" type="text/css" href="stylee.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    background: gold;
+}
+
+.Icons {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Icons a {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    display: block;
+    font-size: 30px;
+    text-align: center;
+    color: black;
+    background-color: white;
+    line-height: 60px;
+    margin: 0 15px;
+    border-radius: 50%0;
+    box-shadow: 0 5px 4px rgba(0, 0, 0,5);
+    transition: 0.5s ease;
+}
+
+.Icons a:hover  {
+    color: white;
+    transform: translate(0, -30px);
+    box-shadow: 0 20px 8px rgba(0, 0, 0, 7);
+}
+
+.Icons a:nth-child(1):hover {
+    background-color: #3b5998;
+}
+.Icons a:nth-child(2):hover {
+    background-color: #FF0000;
+}
+.Icons a:nth-child(3):hover {
+    background:  radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}.Icons a:nth-child(4):hover {
+    background-color: #0000FF;
+}
+.Icons a:nth-child(5):hover {
+    background-color: #128C7E;
+}
+</style>
 <div class="Icons">
 <a href="https://m.facebook.com/profile.php?id=61560811791798"><i class="fa-brands fa-facebook"></i></a>
 <a href="https://www.youtube.com/@Zeeya210"><i class="fa-brands fa-youtube"></i></a>
